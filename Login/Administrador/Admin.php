@@ -33,6 +33,7 @@ if (!$conex) {
           <a href="Admin-Interfaces/promociones-admin.php" class="btn btn-dark" role="button">Actualizar catálogos de promociones</a>
           <a href="Admin-Interfaces/hacienda-admin.php" class="btn btn-dark" role="button">Alquilar hacienda</a>
           <a href="Admin-Interfaces/pedidos-admin.php" class="btn btn-dark" role="button">Visualizar historial de pedidos</a>
+          <a href="Admin-Interfaces/añadir-usuario.php" class="btn btn-dark" role="button">Añadir nuevo usuario</a>
          </div>
         </div>
     </div>

@@ -15,30 +15,32 @@ if (isset($_POST['usuario']) && isset($_POST['contraseña'])) {
     $usuario = mysqli_real_escape_string($conexion, $usuario);
     $contraseña = mysqli_real_escape_string($conexion, $contraseña);
 
-    $consulta = "SELECT * FROM usuarios WHERE usuario='$usuario' AND contraseña='$contraseña'";
+    // Consulta para verificar el usuario y la contraseña directamente
+    $consulta = "SELECT roles FROM usuarios WHERE usuario='$usuario' AND contraseña='$contraseña'";
     $resultado = mysqli_query($conexion, $consulta);
 
     if (!$resultado) {
         die("Error en la consulta: " . mysqli_error($conexion));
     }
 
-    $filas = mysqli_fetch_assoc($resultado);
+    $fila = mysqli_fetch_assoc($resultado);
 
-    if ($filas) {
- 
+    if ($fila) {
         $_SESSION['usuario'] = $usuario;
-        $_SESSION['rol'] = $fila['rol'];
+        $_SESSION['roles'] = $fila['roles'];
 
-        switch ($filas['id_cargo']) {
-            case 1: 
+        // Redirigir según el rol
+        switch ($fila['roles']) {
+            case 'admin': 
                 header("location: /login/Administrador/Admin.php");
                 break;
 
-            case 3: 
+            case 'cliente': 
                 header("location: /login/Cliente/Cliente.php");
                 break;
+
             default:
-                echo "Error en la autenticación";
+                echo "Rol no reconocido";
                 break;
         }
     } else {
