@@ -27,6 +27,7 @@ if (isset($_POST['usuario']) && isset($_POST['contraseña'])) {
     if ($filas) {
  
         $_SESSION['usuario'] = $usuario;
+        $_SESSION['rol'] = $fila['rol'];
 
         switch ($filas['id_cargo']) {
             case 1: 
